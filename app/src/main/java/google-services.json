@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "828092182944",
+    "firebase_url": "https://appchat-c98eb.firebaseio.com",
+    "project_id": "appchat-c98eb",
+    "storage_bucket": "appchat-c98eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828092182944:android:215ab56c06ad12318d34c5",
+        "android_client_info": {
+          "package_name": "com.android.virtus.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828092182944-c7kkrn38ap0libis6mlg00v22f05q5e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkiLuCGGhcrZh_OAwMLhlYrcxr_trToDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828092182944-c7kkrn38ap0libis6mlg00v22f05q5e2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
