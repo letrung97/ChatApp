@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,7 +49,7 @@ public class ProfileFragment extends Fragment {
     StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
-    StorageTask uploadTask;
+    StorageTask<UploadTask.TaskSnapshot> uploadTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,7 +95,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getContext().getContentResolver();
+        ContentResolver contentResolver = Objects.requireNonNull(getContext()).getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
@@ -110,7 +111,7 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
-                        throw task.getException();
+                        throw Objects.requireNonNull(task.getException());
                     }
                     return fileReference.getDownloadUrl();
                 }
@@ -119,6 +120,7 @@ public class ProfileFragment extends Fragment {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
+                        assert downloadUri != null;
                         String mUri = downloadUri.toString();
                         reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
                         HashMap<String, Object> map = new HashMap<>();
