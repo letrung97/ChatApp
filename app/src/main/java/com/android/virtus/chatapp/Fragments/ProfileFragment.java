@@ -64,12 +64,14 @@ public class ProfileFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(isAdded()){
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getName());
                 if (user.getImageURL().equals("default")) {
                     image_profile.setImageResource(R.mipmap.ic_launcher_round);
                 } else {
                     Glide.with(getContext()).load(user.getImageURL()).into(image_profile);
+                }
                 }
             }
 

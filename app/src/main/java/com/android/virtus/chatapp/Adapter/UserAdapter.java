@@ -112,18 +112,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
+                    assert firebaseUser != null;
+                    assert chat != null;
                     if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid)
                             || chat.getSender().equals(firebaseUser.getUid()) && chat.getReceiver().equals(userid)) {
                         lastMessage = chat.getMessage();
                     }
                 }
-                switch (lastMessage) {
-                    case "default":
-                        last_msg.setText("Không có tin nhắn");
-                        break;
-                    default:
-                        last_msg.setText(lastMessage);
-                        break;
+                if ("default".equals(lastMessage)) {
+                    last_msg.setText("Không có tin nhắn");
+                } else {
+                    last_msg.setText(lastMessage);
                 }
                 lastMessage = "default";
             }
