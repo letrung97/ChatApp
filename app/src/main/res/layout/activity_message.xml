@@ -52,7 +52,8 @@
             android:layout_toLeftOf="@+id/btn_send"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:hint="Nhập tin nhắn..." />
+            android:hint="Nhập tin nhắn..."
+            android:autofillHints="" />
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"

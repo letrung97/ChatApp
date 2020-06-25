@@ -154,6 +154,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()) {
                     chatRef.child("id").setValue(userid);
+                    FirebaseDatabase.getInstance().getReference("ChatList").child(userid).child(fuser.getUid()).child("id").setValue(fuser.getUid());
                 }
             }
 
