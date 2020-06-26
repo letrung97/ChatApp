@@ -69,7 +69,7 @@ class MainChatActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
+                FirebaseAuth.getInstance().signOut()!!
                 startActivity(Intent(this@MainChatActivity, DangNhapActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 return true
             }

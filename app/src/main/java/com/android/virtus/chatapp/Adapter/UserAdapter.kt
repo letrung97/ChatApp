@@ -89,11 +89,9 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (snapshot in dataSnapshot.children) {
                     val chat = snapshot.getValue(Chat::class.java)
-                    assert(firebaseUser != null)
-                    assert(chat != null)
-                    if (chat != null) if (chat.receiver.equals(firebaseUser!!.uid) && chat.sender.equals(userid)
-                            || chat.sender.equals(firebaseUser.uid) && chat.receiver.equals(userid)) {
-                        lastMessage = chat.message
+                    if (chat?.receiver.equals(firebaseUser?.uid) && chat?.sender.equals(userid)
+                            || chat?.sender.equals(firebaseUser?.uid) && chat?.receiver.equals(userid)) {
+                        lastMessage = chat?.message
                     }
                 }
                 if ("default" == lastMessage) {
