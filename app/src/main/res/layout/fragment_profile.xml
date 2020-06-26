@@ -20,8 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thông tin cá nhân"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                android:textColor="#000"
+                android:textStyle="bold"
+                />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="100dp"
@@ -37,7 +38,7 @@
                 android:layout_below="@+id/profile_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#000"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:id="@+id/username"/>

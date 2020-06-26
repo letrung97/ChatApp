@@ -28,10 +28,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Đăng nhập vào YoYo Chat"
+                android:text="Đăng nhập vào App Chat"
                 android:gravity="center"
                 android:textSize="18dp"
-                android:textColor="#fff"/>
+                android:textColor="#0000ff"/>
 
             <EditText
                 android:id="@+id/editEmailDN"
@@ -46,11 +46,11 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:paddingBottom="10dp"
-                android:textColorHint="#fff" />
+                android:textColorHint="#a9a9a9" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f9d7db"/>
+                android:background="#a9a9a9"/>
 
             <EditText
                 android:id="@+id/editPasswordDN"
@@ -66,11 +66,11 @@
                 android:maxLines="1"
                 android:paddingTop="8dp"
                 android:paddingBottom="10dp"
-                android:textColorHint="#fff" />
+                android:textColorHint="#a9a9a9" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f9d7db"/>
+                android:background="#a9a9a9"/>
 
             <ProgressBar
                 android:id="@+id/pbLoading"
@@ -87,7 +87,8 @@
                 android:clickable="true"
                 android:padding="16dp"
                 android:text="Đăng nhập"
-                android:textColor="#f16f7d" />
+                android:textColor="#fff"
+                android:textSize="20dp"/>
 
             <Button
                 android:id="@+id/btnDangKy"
@@ -100,13 +101,13 @@
                 android:padding="16dp"
                 android:text="Đăng ký"
                 android:textColor="#fff"
-                android:textSize="18dp" />
+                android:textSize="20dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Quên mật khẩu?"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:id="@+id/forget_pass"
                 android:padding="16dp"
                 android:clickable="true"
