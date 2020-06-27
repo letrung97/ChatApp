@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.android.virtus.chatapp.MessageActivity
 import com.android.virtus.chatapp.Model.Chat
@@ -19,6 +21,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.HashMap
 
 class UserAdapter(private val mContext: Context?, private val mUser: MutableList<User?>?, //người có tin nhắn
                   private val isChat: Boolean) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
@@ -57,6 +60,9 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
             val intent = Intent(mContext, MessageActivity::class.java)
             intent.putExtra("userid", user.id)
             mContext!!.startActivity(intent)
+        }
+        holder.itemView.setOnLongClickListener {
+            OnLongClick(user.id)
         }
     }
 
@@ -105,5 +111,43 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
             override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
+    fun OnLongClick(receiver: String): Boolean {
+        val builder = mContext?.let { AlertDialog.Builder(it) }
+        if (builder != null) {
+            builder.setTitle("Cảnh báo")
+                    .setMessage("bạn có muốn xóa cuộc trò chuyện này không ?")
+                    .setPositiveButton("Đồng ý") { _, _ ->
+                        removeChat(receiver)
+                    }
+                    .setNegativeButton(
+                            "Hủy"
+                    ) { dialog, _ -> dialog?.dismiss() }
+        }
 
+        val dialog = builder?.create();
+        dialog?.show()
+        return true
+    }
+    fun removeChat(receiver: String){
+        var fuser = FirebaseAuth.getInstance().currentUser!!
+        var sender = fuser.uid
+        var root1 = FirebaseDatabase.getInstance().getReference("ChatList")
+        //var root2 = FirebaseDatabase.getInstance().getReference("Chats")
+        Toast.makeText(mContext,sender + "\n" + receiver,Toast.LENGTH_SHORT).show()
+        root1.child(sender).child(receiver).removeValue()
+        /*root1.child(receiver).child(sender).removeValue()
+        root2.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (snapshot in dataSnapshot.children) {
+                    val chat = snapshot.getValue(Chat::class.java)
+                    if ((chat!!.receiver == sender && chat.sender == receiver) || (chat!!.receiver == receiver && chat.sender == sender)) {
+                        Toast.makeText(mContext,snapshot.ref.key,Toast.LENGTH_SHORT).show()
+                        snapshot.ref.removeValue()
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })*/
+    }
 }
+
