@@ -133,7 +133,7 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
         var sender = fuser.uid
         var root1 = FirebaseDatabase.getInstance().getReference("ChatList")
         //var root2 = FirebaseDatabase.getInstance().getReference("Chats")
-        Toast.makeText(mContext,sender + "\n" + receiver,Toast.LENGTH_SHORT).show()
+        //Toast.makeText(mContext,sender + "\n" + receiver,Toast.LENGTH_SHORT).show()
         root1.child(sender).child(receiver).removeValue()
         /*root1.child(receiver).child(sender).removeValue()
         root2.addValueEventListener(object : ValueEventListener {
