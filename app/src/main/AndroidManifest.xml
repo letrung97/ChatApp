@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/chaicont"
+        android:icon="@drawable/chat"
         android:label="ChatApp"
         android:roundIcon="@drawable/chat"
         android:supportsRtl="true"

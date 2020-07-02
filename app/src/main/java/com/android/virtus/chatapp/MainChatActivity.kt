@@ -78,8 +78,11 @@ class MainChatActivity : AppCompatActivity() {
     }
 
     internal inner class ViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
         private val fragments: ArrayList<Fragment> = ArrayList()
+
         private val titles: ArrayList<String> = ArrayList()
+
         override fun getItem(position: Int): Fragment {
             return fragments[position]
         }

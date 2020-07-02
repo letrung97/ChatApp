@@ -61,8 +61,10 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
             intent.putExtra("userid", user.id)
             mContext!!.startActivity(intent)
         }
-        holder.itemView.setOnLongClickListener {
-            OnLongClick(user.id)
+        if (isChat) {
+            holder.itemView.setOnLongClickListener {
+                OnLongClick(user.id)
+            }
         }
     }
 
@@ -111,6 +113,7 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
             override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
+
     fun OnLongClick(receiver: String): Boolean {
         val builder = mContext?.let { AlertDialog.Builder(it) }
         if (builder != null) {
@@ -128,6 +131,7 @@ class UserAdapter(private val mContext: Context?, private val mUser: MutableList
         dialog?.show()
         return true
     }
+
     fun removeChat(receiver: String){
         var fuser = FirebaseAuth.getInstance().currentUser!!
         var sender = fuser.uid

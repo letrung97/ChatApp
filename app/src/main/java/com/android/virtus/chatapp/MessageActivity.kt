@@ -107,12 +107,21 @@ class MessageActivity : AppCompatActivity() {
         hashMap["message"] = message
         hashMap["isseen"] = false
         reference.child("Chats").push().setValue(hashMap)
-        val chatRef = userid.let { FirebaseDatabase.getInstance().getReference("ChatList").child(fuser!!.uid).child(it) }
+        val chatRef1 = userid.let { FirebaseDatabase.getInstance().getReference("ChatList").child(fuser!!.uid).child(it) }
+        chatRef1.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    chatRef1.child("id").setValue(userid)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+        val chatRef = userid.let { FirebaseDatabase.getInstance().getReference("ChatList").child(it).child(fuser!!.uid) }
         chatRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (!dataSnapshot.exists()) {
-                    chatRef.child("id").setValue(userid)
-                    userid.let { FirebaseDatabase.getInstance().getReference("ChatList").child(it).child(fuser!!.uid).child("id").setValue(fuser!!.uid) }
+                    chatRef.child("id").setValue(fuser!!.uid)
                 }
             }
 
